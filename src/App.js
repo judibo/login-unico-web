@@ -1,14 +1,19 @@
+import React, { useState } from 'react'
 import './App.css'
-import Form from './components/Form'
-
+import Login from './pages/Login'
+import Password from './pages/Password'
 
 function App() {
+	const [login, setLogin] = useState('')
+
+	const handleSubmit = (documento) => {
+		setLogin(documento)
+	}
+
 	return (
-		<div className='App'>
-			<header>
-				<img src='./logo-banco-pan.svg' alt='Logo-Banco-Pan' href='/' />
-			</header>
-			<Form />
+		<div>
+			{!login && <Login login={login} handleSubmit={handleSubmit} />}
+			{login && <Password login={login} />}
 		</div>
 	)
 }

@@ -11,6 +11,9 @@ export const FormContent = styled.div`
 		color: #ffffff;
 		font-size: 2.5rem;
 	}
+	& .MuiFormHelperText-root {
+		font-weight: 700;
+	}
 `
 export const Btn = styled.div`
   padding: 2rem 0;
