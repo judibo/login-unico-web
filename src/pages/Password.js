@@ -1,21 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
 	Section,
 	SideSection,
 	HeaderContainer,
 	ProfileImage,
-	InputPasswordContainer,
+	SideBanner,
 	InputPassword,
 	Title,
 	FormContent,
 	HelperText,
 	Btn
 } from './styles'
-import { Button, Fab, Grid } from '@mui/material'
-import { Circle, Backspace } from '@mui/icons-material'
+import { Button, Grid } from '@mui/material'
+import { Circle } from '@mui/icons-material'
+import PinPad from './PinPad'
 
 function Password({ documento, setDocumento }) {
-	const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+	const [pin, setPin] = useState('')
 
 	return (
 		<Section flexDirection='row' padding='0'>
@@ -23,46 +24,41 @@ function Password({ documento, setDocumento }) {
 				<HeaderContainer>
 					<img src='./logo-banco-pan.svg' alt='Logo-Banco-Pan' href='/' />
 				</HeaderContainer>
-				<div style={{ margin: '10px 0' }}>
-					<ProfileImage>
-						<img src='https://photografos.com.br/wp-content/uploads/2020/09/fotografia-para-perfil.jpg' alt='Logo-Banco-Pan' href='/' />
-					</ProfileImage>
-					<p>Jorge Silva</p>
+				<div style={{ margin: '10px 0', padding: '0 6rem' }}>
+					<div>
+						<ProfileImage>
+							<img src='https://photografos.com.br/wp-content/uploads/2020/09/fotografia-para-perfil.jpg' alt='Logo-Banco-Pan' href='/' />
+						</ProfileImage>
+						<p>Jorge Silva</p>
+					</div>
 				</div>
+				<SideBanner>
+					<p>Pra continuar, baixe o app do Pan e crie sua conta grátis</p>
+					<img src='https://accountstemplates.bancopan.com.br/assets/img/mao_celular.svg' alt='Baixe o App' href='/' />
+					<p>Baixe o app!</p>
+				</SideBanner>
 			</SideSection>
 			<Section backgroundColor='#ffffff' className='Password'>
 				<Title>Digita sua senha de acesso usando o teclado virtual abaixo.</Title>
 				<FormContent>
 					<Grid container spacing={2}>
 						<Grid item xs={1}>
-							<InputPassword>
-								<Circle fontSize='small' />
-							</InputPassword>
+							<InputPassword maxLength='1'>{pin && <Circle fontSize='small' />}</InputPassword>
 						</Grid>
 						<Grid item xs={1}>
-							<InputPassword>
-								<Circle fontSize='small' />
-							</InputPassword>
+							<InputPassword maxLength='1'>{pin.length > 3 && <Circle fontSize='small' />}</InputPassword>
 						</Grid>
 						<Grid item xs={1}>
-							<InputPassword>
-								<Circle fontSize='small' />
-							</InputPassword>
+							<InputPassword>{pin.length > 6 && <Circle fontSize='small' />}</InputPassword>
 						</Grid>
 						<Grid item xs={1}>
-							<InputPassword>
-								<Circle fontSize='small' />
-							</InputPassword>
+							<InputPassword>{pin.length > 9 && <Circle fontSize='small' />}</InputPassword>
 						</Grid>
 						<Grid item xs={1}>
-							<InputPassword>
-								<Circle fontSize='small' />
-							</InputPassword>
+							<InputPassword>{pin.length > 12 && <Circle fontSize='small' />}</InputPassword>
 						</Grid>
 						<Grid item xs={1}>
-							<InputPassword>
-								<Circle fontSize='small' />
-							</InputPassword>
+							<InputPassword>{pin.length > 15 && <Circle fontSize='small' />}</InputPassword>
 						</Grid>
 					</Grid>
 					<HelperText>
@@ -73,17 +69,10 @@ function Password({ documento, setDocumento }) {
 					</HelperText>
 					<>
 						<Btn>
-							<Fab variant='contained'>1 ou 2</Fab>
-							<Fab variant='contained'>3 ou 4</Fab>
-							<Fab variant='contained'>5 ou 6</Fab>
-							<Fab variant='contained'>7 ou 8</Fab>
-							<Fab variant='contained'>9 ou 0</Fab>
-							<Fab variant='contained'>
-								<Backspace />
-							</Fab>
+							<PinPad const pin={pin} setPin={setPin} />
 						</Btn>
 						<Btn>
-							<Button variant='contained' fullWidth>
+							<Button size='large' variant='contained' fullWidth disabled={pin.length < 18}>
 								Avançar
 							</Button>
 						</Btn>
