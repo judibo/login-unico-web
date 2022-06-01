@@ -2,15 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { Fab } from '@mui/material'
 import { Backspace } from '@mui/icons-material'
 
-export default function PinPad({pin, setPin}) {
+export default function PinPad({ password, setPassword }) {
 	const [randomArray, setRandomArray] = useState([])
-
 	const addNumber = (value) => {
-		setPin(pin.concat(value))
-		// onChange(pin)
+		if (password.length < 6) setPassword(password.concat([value]))
 	}
 	const removeNumber = (value) => {
-		setPin(pin.slice(0, -3))
+		setPassword(password.slice(0, -1))
 	}
 
 	const shuffle = (array) => {
@@ -28,15 +26,24 @@ export default function PinPad({pin, setPin}) {
 	}
 
 	useEffect(() => {
-		setRandomArray(
-			shuffle([
-				[1, 2],
-				[3, 4],
-				[5, 6],
-				[7, 8],
-				[9, 0]
-			])
-		)
+		const shuffleArray = Array(5)
+			.fill()
+			.map(() =>
+				Array(2)
+					.fill()
+					.map(() => Math.floor(Math.random() * 10))
+			)
+
+		setRandomArray(shuffleArray)
+		// setRandomArray(
+		// 	shuffle([
+		// 		[1, 2],
+		// 		[3, 4],
+		// 		[5, 6],
+		// 		[7, 8],
+		// 		[9, 0]
+		// 	])
+		// )
 	}, [])
 
 	return (

@@ -5,7 +5,7 @@ import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import { Section, HeaderContainer, Title, FormContent, Btn } from './styles'
 
-function Login({ handleSubmit }) {
+function Login({ handleLogin }) {
 	const [documento, setDocumento] = useState('')
 
 	const handlerDocumento = async (e) => {
@@ -14,7 +14,7 @@ function Login({ handleSubmit }) {
 	}
 
 	const handleParent = () => {
-		handleSubmit(documento)
+		handleLogin(documento)
 	}
 
 	const onChange = (value) => {
@@ -65,3 +65,53 @@ function Login({ handleSubmit }) {
 }
 
 export default Login
+
+
+// import React, { useCallback, useState } from 'react';
+// import { auth } from '../services/auth/authService';
+// import Input from './input';
+
+// export default function Login({ onLogin }) {
+//   const [username, setUsername] = useState('');
+//   const [password, setPassword] = useState('');
+//   const [invalidCredentials, setInvalidCredentials] = useState(false);
+
+//   const handleSubmit = useCallback(
+//     async (e) => {
+//       e.preventDefault();
+
+//       const res = await auth(username, password);
+
+//       // For simplicity, we refresh the page after authenticating
+//       // and let app handle the flow
+//       if (res.user) return (window.location = '/');
+
+//       setInvalidCredentials(true);
+//     },
+//     [username, password]
+//   );
+
+//   return (
+//     <form onSubmit={handleSubmit}>
+//       <Input
+//         id="username"
+//         label="Username"
+//         type="text"
+//         value={username}
+//         onChange={(e) => setUsername(e.target.value)}
+//       />
+
+//       <Input
+//         id="password"
+//         label="Password"
+//         type="password"
+//         value={password}
+//         onChange={(e) => setPassword(e.target.value)}
+//       />
+
+//       <button type="submit">Log in</button>
+
+//       {invalidCredentials && <p>Invalid credentials</p>}
+//     </form>
+//   );
+// }

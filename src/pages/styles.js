@@ -10,39 +10,20 @@ export const Section = styled.div`
 	background-size: contain;
 	background-image: ${(props) => `url(${props.bgImg})`|| 'none'};
 	background-position-x: right;
+	&.Password {
+		margin-top: 6rem;
+		width: 70%;
+	}
 `
-export const SideSection = styled.div`
-	background-color: ${(props) => props.backgroundColor || '#fff'};
-	height: 100vh;
-	display: flex;
-	flex-direction: column;
-	border-right: 8px solid #f5f5f5;
-	font-weight: 700;
-	font-family: 'CircularAirPro-Bold', Arial, Helvetica, sans-serif;
-`
+
 export const HeaderContainer = styled.header`
 	margin-top: 6rem;
-	padding: 0 6rem;
-`
-export const SideBanner = styled.div`
-	position: fixed;
-	bottom: 0;
-	border-top: 8px solid #f5f5f5;
-	padding: 0 4rem;
-	text-align: center;
-	width: 9%;
-	& img {
-		width: 150px;
-    height: 150px;
-	}
 `
 
 export const FormContent = styled.div`
 	display: block;
 	background-color: ${(props) => props.backgroundColor || '#fff'};
-	position: absolute;
-	width: 80%;
-	bottom: 6rem;
+	margin-top: 300px;
 
 	& .MuiFormControl-root.MuiTextField-root {
 		width: 100%;
@@ -64,7 +45,7 @@ export const Btn = styled.div`
 	padding: 2rem 0;
 	justify-content: space-between;
 	display: flex;
-	width: 80%;
+	width: 100%;
 
 	& .pinPad {
 		@media screen and (max-width: 500px) {
@@ -104,12 +85,4 @@ export const InputPassword = styled.div`
 	text-align: center;
 	line-height: 50px;
 	color: #03a9f4;
-`
-export const ProfileImage = styled.div`
-	& img {
-		border: 1px solid #f5f5f5;
-		border-radius: 50%;
-		width: 60px;
-		height: 60px;
-	}
 `
