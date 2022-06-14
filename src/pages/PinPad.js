@@ -11,39 +11,17 @@ export default function PinPad({ password, setPassword }) {
 		setPassword(password.slice(0, -1))
 	}
 
-	const shuffle = (array) => {
-		const newArray = [...array]
-		let currentIndex = newArray.length - 1
-
-		while (currentIndex > 0) {
-			const randomIndex = Math.floor(Math.random() * currentIndex)
-			const temp = newArray[currentIndex]
-			newArray[currentIndex] = newArray[randomIndex]
-			newArray[randomIndex] = temp
-			currentIndex -= 1
-		}
-		return newArray
-	}
-
 	useEffect(() => {
-		const shuffleArray = Array(5)
+		const randomArray = new Array(10)
 			.fill()
-			.map(() =>
-				Array(2)
-					.fill()
-					.map(() => Math.floor(Math.random() * 10))
-			)
+			.map((a, i) => (a = i))
+			.sort(() => Math.random() - 0.5)
 
-		setRandomArray(shuffleArray)
-		// setRandomArray(
-		// 	shuffle([
-		// 		[1, 2],
-		// 		[3, 4],
-		// 		[5, 6],
-		// 		[7, 8],
-		// 		[9, 0]
-		// 	])
-		// )
+		let twoNumbersArray = []
+
+		while (randomArray.length) twoNumbersArray.push(randomArray.splice(0, 2))
+
+		setRandomArray(twoNumbersArray)
 	}, [])
 
 	return (

@@ -10,7 +10,13 @@ function Login({ handleLogin }) {
 
 	const handlerDocumento = async (e) => {
 		const valueDocumento = e.currentTarget.value
-		setDocumento(valueDocumento)
+
+		let unmaskedDocument = null
+
+		if (valueDocumento.length > 14) unmaskedDocument = valueDocumento.replace(/[^0-9]/g, '').padStart(14, 0)
+		else unmaskedDocument = valueDocumento.replace(/\./g, '').replace('-', '').replace('/', '')
+
+		setDocumento(unmaskedDocument)
 	}
 
 	const handleParent = () => {
@@ -55,7 +61,7 @@ function Login({ handleLogin }) {
 				</InputMask>
 				<ReCAPTCHA sitekey='6Lf-2gMgAAAAABMVlGHI2ocXz9fW_3xcFr8nKA4m' onChange={onChange} />
 				<Btn>
-					<Button size="large" variant='contained' fullWidth onClick={handleParent} disabled={documento.length < 14}>
+					<Button size='large' variant='contained' fullWidth onClick={handleParent} disabled={documento.length < 14}>
 						Entrar
 					</Button>
 				</Btn>
@@ -65,53 +71,3 @@ function Login({ handleLogin }) {
 }
 
 export default Login
-
-
-// import React, { useCallback, useState } from 'react';
-// import { auth } from '../services/auth/authService';
-// import Input from './input';
-
-// export default function Login({ onLogin }) {
-//   const [username, setUsername] = useState('');
-//   const [password, setPassword] = useState('');
-//   const [invalidCredentials, setInvalidCredentials] = useState(false);
-
-//   const handleSubmit = useCallback(
-//     async (e) => {
-//       e.preventDefault();
-
-//       const res = await auth(username, password);
-
-//       // For simplicity, we refresh the page after authenticating
-//       // and let app handle the flow
-//       if (res.user) return (window.location = '/');
-
-//       setInvalidCredentials(true);
-//     },
-//     [username, password]
-//   );
-
-//   return (
-//     <form onSubmit={handleSubmit}>
-//       <Input
-//         id="username"
-//         label="Username"
-//         type="text"
-//         value={username}
-//         onChange={(e) => setUsername(e.target.value)}
-//       />
-
-//       <Input
-//         id="password"
-//         label="Password"
-//         type="password"
-//         value={password}
-//         onChange={(e) => setPassword(e.target.value)}
-//       />
-
-//       <button type="submit">Log in</button>
-
-//       {invalidCredentials && <p>Invalid credentials</p>}
-//     </form>
-//   );
-// }

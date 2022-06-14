@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from "react-router-dom";
 import { Section, InputPassword, Title, FormContent, HelperText, Btn } from './styles'
 import { Button, Grid, Stepper, Step, StepLabel } from '@mui/material'
 import { Circle } from '@mui/icons-material'
@@ -72,9 +73,11 @@ function Password({ password, setPassword, handleSubmit }) {
 								</Grid>
 								<HelperText>
 									Esqueceu a senha?{' '}
-									<a href='/' alt='Recuperar senha'>
+									<Link to="/recuperarSenha">Recuperar agora</Link>
+
+									{/* <a href='/' alt='Recuperar senha'>
 										Recuperar agora
-									</a>
+									</a> */}
 								</HelperText>
 								<>
 									<Btn>

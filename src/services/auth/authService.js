@@ -1,5 +1,5 @@
 export async function auth(username, password) {
-	const res = await fetch('/login', {
+	const res = await fetch('/authenticate', {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify({ username, password })
@@ -21,3 +21,6 @@ export async function verifyOtp(code) {
 
   return res.json();
 }
+
+
+// endpoint /cliente
