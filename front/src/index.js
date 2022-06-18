@@ -9,6 +9,7 @@ import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 import EsqueciSenhaForm from './pages/EsqueciSenhaForm';
+import Home from './pages/Home';
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
@@ -16,6 +17,7 @@ root.render(
 		<BrowserRouter>
       <Routes>
       <Route path="/" element={<App />} />
+      <Route path="home" element={<Home />} />
       <Route path="recuperarSenha" element={<EsqueciSenhaForm/>} />
     </Routes>
 		</BrowserRouter>

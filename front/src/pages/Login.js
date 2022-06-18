@@ -10,13 +10,7 @@ function Login({ handleLogin }) {
 
 	const handlerDocumento = async (e) => {
 		const valueDocumento = e.currentTarget.value
-
-		let unmaskedDocument = null
-
-		if (valueDocumento.length > 14) unmaskedDocument = valueDocumento.replace(/[^0-9]/g, '').padStart(14, 0)
-		else unmaskedDocument = valueDocumento.replace(/\./g, '').replace('-', '').replace('/', '')
-
-		setDocumento(unmaskedDocument)
+		setDocumento(valueDocumento)
 	}
 
 	const handleParent = () => {

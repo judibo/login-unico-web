@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom'
 import { Section, InputPassword, Title, FormContent, HelperText, Btn } from './styles'
 import { Button, Grid, Stepper, Step, StepLabel } from '@mui/material'
 import { Circle } from '@mui/icons-material'
@@ -7,13 +7,13 @@ import PinPad from './PinPad'
 import SideBar from '../components/Header/SideBar'
 import OneTimePassword from './OneTimePassword'
 
-function Password({ password, setPassword, handleSubmit }) {
+function Password({ password, setPassword, handleSubmit, user }) {
 	const steps = ['Senha', 'Confirmar']
 	const [activeStep, setActiveStep] = useState(0)
 
-	const handleNext = () => {
+	const handleNext = async (e) => {
+		await handleSubmit(e)
 		setActiveStep((prevActiveStep) => prevActiveStep + 1)
-		handleSubmit()
 	}
 
 	const handleBack = () => {
@@ -25,25 +25,18 @@ function Password({ password, setPassword, handleSubmit }) {
 			<SideBar />
 			<Section backgroundColor='#ffffff' className='Password'>
 				<>
-					{activeStep === steps.length ? (
-						<OneTimePassword />
-					) : (
-						<>
-							<Stepper activeStep={activeStep}>
-								{steps.map((label, index) => {
-									const stepProps = {}
-									const labelProps = {}
+					<Stepper activeStep={activeStep}>
+						{steps.map((label, index) => {
+							const stepProps = {}
+							const labelProps = {}
 
-									return (
-										<Step key={label} {...stepProps}>
-											<StepLabel {...labelProps}>{label}</StepLabel>
-										</Step>
-									)
-								})}
-							</Stepper>
-						</>
-					)}
-
+							return (
+								<Step key={label} {...stepProps}>
+									<StepLabel {...labelProps}>{label}</StepLabel>
+								</Step>
+							)
+						})}
+					</Stepper>
 					{activeStep === 0 && (
 						<>
 							<Title>
@@ -72,12 +65,7 @@ function Password({ password, setPassword, handleSubmit }) {
 									</Grid>
 								</Grid>
 								<HelperText>
-									Esqueceu a senha?{' '}
-									<Link to="/recuperarSenha">Recuperar agora</Link>
-
-									{/* <a href='/' alt='Recuperar senha'>
-										Recuperar agora
-									</a> */}
+									Esqueceu a senha? <Link to='/recuperarSenha'>Recuperar agora</Link>
 								</HelperText>
 								<>
 									<Btn>
@@ -92,7 +80,7 @@ function Password({ password, setPassword, handleSubmit }) {
 							</FormContent>
 						</>
 					)}
-					{activeStep === 1 && <OneTimePassword handleBack={handleBack} />}
+					{activeStep === 1 && <OneTimePassword handleBack={handleBack} user={user} />}
 				</>
 			</Section>
 		</Section>

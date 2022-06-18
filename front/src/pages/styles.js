@@ -86,3 +86,7 @@ export const InputPassword = styled.div`
 	line-height: 50px;
 	color: #03a9f4;
 `
+export const QRCodeImg = styled.img`
+	width: 200px;
+	heigth: 200px`
+
