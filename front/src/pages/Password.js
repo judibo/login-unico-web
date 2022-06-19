@@ -10,9 +10,13 @@ import OneTimePassword from './OneTimePassword'
 function Password({ password, setPassword, handleSubmit, user }) {
 	const steps = ['Senha', 'Confirmar']
 	const [activeStep, setActiveStep] = useState(0)
+	const [errorMessage, setErrorMessage] = useState('')
 
 	const handleNext = async (e) => {
-		await handleSubmit(e)
+		const res = await handleSubmit(e)
+		console.log(res)
+		setErrorMessage('Usuário não autorizado ou inexistente')
+		
 		setActiveStep((prevActiveStep) => prevActiveStep + 1)
 	}
 
@@ -76,6 +80,9 @@ function Password({ password, setPassword, handleSubmit, user }) {
 											Avançar
 										</Button>
 									</Btn>
+								<HelperText>
+									{errorMessage} 
+								</HelperText>
 								</>
 							</FormContent>
 						</>

@@ -58,7 +58,6 @@ export const Title = styled.h2`
 	font-weight: 700;
 	font-family: 'Montserrat', sans-serif;
 	text-align: left;
-	width: 40%;
 
 	font-family: 'CircularAirPro-Bold', Arial, Helvetica, sans-serif;
 	letter-spacing: -0.02em;

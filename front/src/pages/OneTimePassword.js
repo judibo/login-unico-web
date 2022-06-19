@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { buscarCliente, verifyUser } from '../services/auth/authService'
-import { Section, Title, Btn, QRCodeImg } from './styles'
+import { Title, Btn, QRCodeImg } from './styles'
 import { Button, TextField } from '@mui/material'
 
 export default function OneTimePassword({ enabled, handleBack, user }) {
@@ -30,7 +30,12 @@ export default function OneTimePassword({ enabled, handleBack, user }) {
 
 	return (
 		<>
-			{user.isBlocked && <Title>Seu usuário está bloqueado, por favor resete a sua senha.</Title>}
+			{user.isBlocked && (
+				<Title>
+					Seu usuário está bloqueado, <br />
+					por favor resete a sua senha.
+				</Title>
+			)}
 			{!enabled && (
 				<>
 					<Title>Escaneie o QR code no seu app de autenticação</Title>
